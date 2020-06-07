@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:indeterminate="true"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNoInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oops!!\t\tNo Internet"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="@android:color/holo_blue_dark"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Worldwide Summary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Total Cases"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+
+            <TextView
+                android:id="@+id/txtTotalCasesValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/white"
+                tools:text="100" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Cured / Discharged"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+
+            <TextView
+                android:id="@+id/txtTotalCuredValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                tools:text="100" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Total Deaths"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+
+            <TextView
+                android:id="@+id/txtTotalDeathsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/holo_red_light"
+                tools:text="100" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="@android:color/holo_purple"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardSummary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:autoLink="phone"
+                android:drawableLeft="@android:drawable/stat_sys_phone_call"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTollFree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:autoLink="phone"
+                android:drawableLeft="@android:drawable/stat_sys_phone_call"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:autoLink="email"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:autoLink="web"
+                android:drawableLeft="@drawable/ic_twitter"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:autoLink="web"
+                android:drawableLeft="@drawable/ic_facebook"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
