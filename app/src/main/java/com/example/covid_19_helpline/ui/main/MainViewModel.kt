@@ -1,61 +1,64 @@
 package com.example.covid_19_helpline.ui.main
 
-import android.os.Handler
-import androidx.core.os.postDelayed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainViewModel : ViewModel() {
-    var state: LoginViewState = LoginViewState.Idle
 
-    private val _stateLiveData = MutableLiveData<LoginViewState>(LoginViewState.Idle)
+    private val _apiCallGetCaseSummary = MutableLiveData<String>()
+    private val _apiCallHelpline = MutableLiveData<String>()
 
-    val stateLiveData: LiveData<LoginViewState> = _stateLiveData
+    val apiCallGetCaseSummary: LiveData<String> = _apiCallGetCaseSummary
+    val apiCallHelpline: LiveData<String> = _apiCallHelpline
 
-    fun onSubmit(email: String, password: String) {
-        when {
-            isEmailInvalid(email) -> _stateLiveData.value =
-                LoginViewState.Failed(message = "Email is Invalid")
+    suspend fun apiCallGetCaseSummaryFun() {
+        _apiCallGetCaseSummary.value = httpGet("https://coronavirus-19-api.herokuapp.com/all")
+    }
 
-            isPasswordInvalid(password) -> _stateLiveData.value =
-                LoginViewState.Succeed(message = "Password is Invalid")
+    suspend fun apiCallHelplineFun() {
+        _apiCallHelpline.value = httpGet("https://api.rootnet.in/covid19-in/contacts")
+    }
 
-            else -> {
-                _stateLiveData.value = LoginViewState.Progress
-                processLogin { hasSucceed ->
-                    if (hasSucceed) {
-                        _stateLiveData.value =
-                            LoginViewState.Succeed(message = "Yay Login Success!!")
-                    } else {
-                        _stateLiveData.value = LoginViewState.Failed(message = "Login has Failed!")
-                    }
-                }
+    private fun convertInputStreamToString(inputStream: InputStream): String {
+        val bufferedReader: BufferedReader? = BufferedReader(InputStreamReader(inputStream))
+
+        var line: String? = bufferedReader?.readLine()
+        var result = ""
+
+        while (line != null) {
+            result += line
+            line = bufferedReader?.readLine()
+        }
+
+        inputStream.close()
+        return result
+    }
+
+    private suspend fun httpGet(myURL: String): String? {
+
+        return withContext(Dispatchers.IO) {
+            val inputStream: InputStream
+
+            val httpURLConnection: HttpURLConnection =
+                URL(myURL).openConnection() as HttpURLConnection
+
+            httpURLConnection.connect()
+
+            inputStream = httpURLConnection.inputStream
+
+            if (inputStream != null) {
+                convertInputStreamToString(inputStream)
+            } else {
+                "{}"
             }
         }
     }
-
-    private fun processLogin(callback: (Boolean) -> Unit) {
-        Handler().postDelayed(3000) {
-            callback(true)
-        }
-    }
-
-    private fun isPasswordInvalid(password: String): Boolean {
-        return password.count() < 4
-    }
-
-    private fun isEmailInvalid(email: String): Boolean {
-        return email.singleOrNull { it == '@' } == null
-    }
-}
-
-sealed class LoginViewState {
-    object Idle : LoginViewState()
-
-    object Progress : LoginViewState()
-
-    data class Failed(val message: String?) : LoginViewState()
-
-    data class Succeed(val message: String?) : LoginViewState()
 }
