@@ -1,4 +1,4 @@
-package com.example.covid_19_helpline
+package com.mayurbhola.instant
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

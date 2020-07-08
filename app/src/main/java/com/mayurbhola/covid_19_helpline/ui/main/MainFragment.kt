@@ -1,4 +1,4 @@
-package com.example.covid_19_helpline.ui.main
+package com.mayurbhola.covid_19_helpline.ui.main
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.example.covid_19_helpline.R
+import com.mayurbhola.covid_19_helpline.R
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject

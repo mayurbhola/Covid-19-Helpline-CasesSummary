@@ -1,8 +1,8 @@
-package com.example.covid_19_helpline
+package com.mayurbhola.covid_19_helpline
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.covid_19_helpline.ui.main.MainFragment
+import com.mayurbhola.covid_19_helpline.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

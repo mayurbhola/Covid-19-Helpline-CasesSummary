@@ -1,4 +1,4 @@
-package com.example.covid_19_helpline
+package com.mayurbhola.covid_19_helpline
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

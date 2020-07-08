@@ -1,4 +1,4 @@
-package com.example.covid_19_helpline.ui.main
+package com.mayurbhola.covid_19_helpline.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
